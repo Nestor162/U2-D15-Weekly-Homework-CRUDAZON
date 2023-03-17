@@ -21,4 +21,41 @@ document.addEventListener("DOMContentLoaded", () => {
   // Seleziono il form dal DOM e aggiungo un evenlistener
   const form = document.getElementById("productsForm");
   form.addEventListener("submit", handleSubmit);
+
+  const productId = new URLSearchParams(window.location.search).get("id");
+
+  // Se esiste, vuol dire che sono in modalita modifica
+  if (productId) {
+    // Esegue questa funzione
+    getProductToEdit();
+  } else {
+    console.log("nope");
+  }
 });
+
+// La seguente funzione fa una fetch per ottenere le info del prodotto il cui ID si trova sul URL
+// Quindi mostra le informazioni del prodotto da modificare sui campi del form
+const getProductToEdit = async () => {
+  try {
+    const productId = new URLSearchParams(window.location.search).get("id");
+    const response = await doFetch("GET", undefined, `https://striveschool-api.herokuapp.com/api/product/${productId}`);
+
+    document.getElementById("productName").value = response.name;
+    document.getElementById("productDesc").value = response.description;
+    document.getElementById("productBrand").value = response.brand;
+    document.getElementById("productPic").value = response.imageUrl;
+    document.getElementById("productPrice").value = response.price;
+  } catch (error) {
+    console.log(error);
+  }
+};
+// const editProduct = async () => {
+//   try {
+//     // Prendo il parametro della URL corrispondente al ID prodotto
+//     const productId = new URLSearchParams(window.location.search).get("id");
+//     const response = await doFetch("PUT", undefined, `https://striveschool-api.herokuapp.com/api/product/${productId}`);
+//     console.log(response + "edit");
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
