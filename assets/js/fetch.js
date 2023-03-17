@@ -47,6 +47,9 @@ const doFetch = async (selectedMethod = "GET", body) => {
     if (!response.ok) throw new Error("Si è verificato un problema con la fetch");
 
     const data = await response.json();
+    // Qui faccio il return dei dati ottenuti per utilizzarli altrove
+    return data;
+    // console.log(data);
   } catch (error) {
     console.error("⚠️ " + error);
   }
