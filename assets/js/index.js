@@ -14,7 +14,7 @@ const getContent = async () => {
 // Funzione per creare dinamicamente i card da mostrare sul HTML
 const createCards = products => {
   const container = document.createElement("div");
-  container.className = "container mt-5";
+  container.classList.add("container", "mt-5");
   document.body.appendChild(container);
 
   const row = document.createElement("div");
@@ -23,11 +23,11 @@ const createCards = products => {
 
   products.forEach(el => {
     const col = document.createElement("div");
-    col.className = "col-3";
+    col.classList.add("col-3", "mb-5");
     row.appendChild(col);
 
     const cardWrapper = document.createElement("div");
-    cardWrapper.className = "card";
+    cardWrapper.classList.add("card", "h-100", "shadow-sm");
     col.appendChild(cardWrapper);
 
     const img = document.createElement("img");
@@ -37,7 +37,7 @@ const createCards = products => {
     cardWrapper.appendChild(img);
 
     const cardBody = document.createElement("div");
-    cardBody.className = "card-body";
+    cardBody.classList.add("card-body", "d-flex", "flex-column");
     cardWrapper.appendChild(cardBody);
 
     const cardTitle = document.createElement("h5");
@@ -51,7 +51,7 @@ const createCards = products => {
     cardBody.appendChild(cardText);
 
     const btnWrapper = document.createElement("div");
-    btnWrapper.classList.add("d-flex", "justify-content-between");
+    btnWrapper.classList.add("d-flex", "justify-content-between", "mt-auto");
     cardBody.appendChild(btnWrapper);
 
     const link = document.createElement("a");
