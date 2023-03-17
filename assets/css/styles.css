@@ -29,9 +29,15 @@ body {
 }
 
 .card-img-top {
-  width: 100%;
+  width: 90%;
   height: 25vw;
   object-fit: contain;
+  margin-inline: auto;
+}
+
+.card:hover .card-img-top {
+  width: 100%;
+  transition: width, 2s;
 }
 
 .btn-primary {
