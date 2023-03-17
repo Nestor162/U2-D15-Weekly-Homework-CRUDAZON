@@ -20,24 +20,39 @@ const showDetails = product => {
   const container = document.getElementById("productInfo");
   container.textContent = "";
 
+  // Creo dinamicamente gli elementi del DOM
+  const row = document.createElement("div");
+  row.className = "row";
+  container.append(row);
+
+  const col = document.createElement("div");
+  col.className = "col-7";
+  row.append(col);
+
+  const col2 = document.createElement("div");
+  col2.className = "col-5";
+  row.append(col2);
+
   const img = document.createElement("img");
   img.src = `${product.imageUrl}`;
-  img.width = 300;
-  container.append(img);
+  img.classList.add("w-100", "rounded", "shadow");
+  col.append(img);
 
   const name = document.createElement("h2");
+  name.className = "mt-3";
   name.textContent = `Name: ${product.name}`;
-  container.append(name);
+  col2.append(name);
 
   const description = document.createElement("p");
   description.textContent = `Description: ${product.description}`;
-  container.append(description);
+  col2.append(description);
 
   const brand = document.createElement("p");
   brand.textContent = `Brand: ${product.brand}`;
-  container.append(brand);
+  col2.append(brand);
 
   const price = document.createElement("h4");
+  price.classList.add("badge", "bg-info", "fs-5");
   price.textContent = `${product.price} €`;
-  container.append(price);
+  col2.append(price);
 };
