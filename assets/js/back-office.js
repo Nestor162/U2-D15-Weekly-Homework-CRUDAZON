@@ -78,6 +78,7 @@ const editProduct = async id => {
       // Faccio una fetch di tipo PUT passando al body le nuove info
       const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
       alert("Prodotto modificato con successo!");
+      window.location.assign("./index.html");
     }
   } catch (error) {
     console.log(error);
