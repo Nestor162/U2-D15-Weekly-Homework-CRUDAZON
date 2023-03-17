@@ -13,7 +13,7 @@ const handleSubmit = event => {
   console.log(newProduct);
 
   doFetch("POST", newProduct);
-
+  showAlert(`Inserimnto del prodotto ${newProduct.name} avvenuto con successo`, "alert-success");
   event.target.reset();
 };
 
@@ -80,10 +80,15 @@ const editProduct = async id => {
     const confirmation = window.confirm("Sei sicuro di voler MODIFICARE questo prodotto?");
     if (confirmation) {
       const id = new URLSearchParams(window.location.search).get("id");
+
       // Faccio una fetch di tipo PUT passando al body le nuove info
       const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
-      alert("Prodotto modificato con successo!");
-      window.location.assign("./index.html");
+
+      // Mostra il messaggio e dopo due secondi reindirizza al index
+      showAlert("Prodotto modificato con successo", "alert-warning");
+      setTimeout(() => {
+        window.location.assign("./index.html");
+      }, 2000);
     }
   } catch (error) {
     console.log(error);
@@ -99,10 +104,22 @@ const deleteProduct = async () => {
 
     if (confirmation) {
       const response = await doFetch("DELETE", undefined, `https://striveschool-api.herokuapp.com/api/product/${id}`);
-      alert("Prodotto rimosso con successo");
-      window.location.assign("./index.html");
+
+      // Mostra il messaggio e dopo due secondi reindirizza al index
+      showAlert("Prodotto rimosso con successo", "alert-danger");
+      setTimeout(() => {
+        window.location.assign("./index.html");
+      }, 2000);
     }
   } catch (error) {
     console.log(error);
   }
+};
+
+/*  Questa funzione mostra un 'alert' de Bootstrap che mostra messaggio personalizzato e si puo scegliere il colore a seconda del tipo */
+const showAlert = (messaggio, type) => {
+  const alertContainer = document.createElement("div");
+  alertContainer.classList.add("alert", `${type}`);
+  alertContainer.textContent = messaggio;
+  document.body.prepend(alertContainer);
 };
