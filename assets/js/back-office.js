@@ -129,6 +129,7 @@ const showAlert = (message, type) => {
   const alertContainer = document.createElement("div");
   alertContainer.classList.add("alert", `${type}`);
   alertContainer.textContent = message;
+  alertContainer.classList.add("position-fixed", "top-0", "start-0", "end-0", "z-3");
   document.body.prepend(alertContainer);
 };
 
