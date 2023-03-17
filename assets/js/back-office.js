@@ -13,7 +13,15 @@ const handleSubmit = event => {
   console.log(newProduct);
 
   doFetch("POST", newProduct);
-  showAlert(`Inserimnto del prodotto ${newProduct.name} avvenuto con successo`, "alert-success");
+
+  // Mostra messagio creazione prodotto, dopo due secondi scompare.
+  // Non viene fatto il redirect al index perche si prevede anche l'inserimento di vari prodotti di fila
+  showAlert(`Inserimento del prodotto ${newProduct.name} avvenuto con successo`, "alert-success");
+  const alertInterval = setInterval(() => {
+    document.querySelector(".alert").remove();
+  }, 2000);
+  clearInterval(alertInterval);
+
   event.target.reset();
 };
 
@@ -86,9 +94,10 @@ const editProduct = async id => {
 
       // Mostra il messaggio e dopo due secondi reindirizza al index
       showAlert("Prodotto modificato con successo", "alert-warning");
-      setTimeout(() => {
+      const alertInterval = setTimeout(() => {
         window.location.assign("./index.html");
       }, 2000);
+      clearInterval(alertInterval);
     }
   } catch (error) {
     console.log(error);
@@ -100,6 +109,7 @@ const deleteProduct = async () => {
     const id = new URLSearchParams(window.location.search).get("id");
 
     // Chiedo conferma prima di eliminare
+    // showModal("Sei sicuro di voler ELIMINARE questo prodotto?");
     const confirmation = window.confirm("Sei sicuro di voler ELIMINARE questo prodotto?");
 
     if (confirmation) {
@@ -107,9 +117,10 @@ const deleteProduct = async () => {
 
       // Mostra il messaggio e dopo due secondi reindirizza al index
       showAlert("Prodotto rimosso con successo", "alert-danger");
-      setTimeout(() => {
+      const alertInterval = setTimeout(() => {
         window.location.assign("./index.html");
       }, 2000);
+      clearInterval(alertInterval);
     }
   } catch (error) {
     console.log(error);
@@ -117,9 +128,36 @@ const deleteProduct = async () => {
 };
 
 /*  Questa funzione mostra un 'alert' de Bootstrap che mostra messaggio personalizzato e si puo scegliere il colore a seconda del tipo */
-const showAlert = (messaggio, type) => {
+const showAlert = (message, type) => {
   const alertContainer = document.createElement("div");
   alertContainer.classList.add("alert", `${type}`);
-  alertContainer.textContent = messaggio;
+  alertContainer.textContent = message;
   document.body.prepend(alertContainer);
 };
+
+// const showModal = message => {
+//   const div = document.createElement("div");
+
+//   div.innerHTML = `
+//   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+//   <div class="modal-dialog">
+//     <div class="modal-content">
+//       <div class="modal-header">
+//         <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+//         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+//       </div>
+//       <div class="modal-body">
+//         ...
+//       </div>
+//       <div class="modal-footer">
+//         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+//         <button type="button" class="btn btn-primary">Save changes</button>
+//       </div>
+//     </div>
+//   </div>
+// </div>
+
+//   `;
+//   document.body.append("div");
+//   console.log("aaa");
+// };
