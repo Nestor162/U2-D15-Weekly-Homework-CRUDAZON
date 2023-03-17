@@ -50,11 +50,21 @@ const createCards = products => {
     cardText.textContent = `${el.description}`;
     cardBody.appendChild(cardText);
 
+    const btnWrapper = document.createElement("div");
+    btnWrapper.classList.add("d-flex", "justify-content-between");
+    cardBody.appendChild(btnWrapper);
+
     const link = document.createElement("a");
     link.href = `./details.html?id=${el._id}`;
-    link.className = "btn, btn-primary";
+    link.classList.add("btn", "btn-primary");
     link.textContent = "Scopri di più";
-    cardBody.appendChild(link);
+    btnWrapper.appendChild(link);
+
+    const btnEdit = document.createElement("a");
+    btnEdit.href = `./back-office.html?id=${el._id}`;
+    btnEdit.classList.add("btn", "btn-secondary", "gap-3");
+    btnEdit.textContent = "Edit";
+    btnWrapper.appendChild(btnEdit);
   });
 };
 
