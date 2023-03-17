@@ -29,9 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (productId) {
     // Esegue questa funzione
     getProductToEdit(productId);
-    const btnEdit = document.getElementById("edit");
-    btnEdit.className = "btn btn-success";
-    btnEdit.addEventListener("click", editProduct);
+
+    document.querySelector("button[type=submit]").className = "d-none";
   } else {
     console.log("nope");
   }
@@ -48,6 +47,14 @@ const getProductToEdit = async id => {
     document.getElementById("productBrand").value = response.brand;
     document.getElementById("productPic").value = response.imageUrl;
     document.getElementById("productPrice").value = response.price;
+
+    // Vengono attivati i bottoni di modifica ed eliminazione
+    const btnEdit = document.getElementById("edit");
+    btnEdit.className = "btn btn-success";
+    const btnDelete = document.getElementById("delete");
+    btnDelete.className = "btn btn-danger";
+    btnEdit.addEventListener("click", editProduct);
+    btnDelete.addEventListener("click", deleteProduct);
   } catch (error) {
     console.log(error);
   }
@@ -64,9 +71,26 @@ const editProduct = async id => {
       price: document.getElementById("productPrice").value
     };
 
+    const id = new URLSearchParams(window.location.search).get("id");
     // Faccio una fetch di tipo PUT passando al body le nuove info
     const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
     alert("modificato!");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const deleteProduct = async () => {
+  try {
+    const id = new URLSearchParams(window.location.search).get("id");
+
+    // Chiedere conferma prima di eliminare
+    const confirmation = window.confirm("Sei sicuro di voler eliminare questo prodotto?");
+
+    if (confirmation) {
+      const response = await doFetch("DELETE", undefined, `https://striveschool-api.herokuapp.com/api/product/${id}`);
+      alert("Prodotto rimosso con successo");
+    }
   } catch (error) {
     console.log(error);
   }
