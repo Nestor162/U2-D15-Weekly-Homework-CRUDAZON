@@ -90,6 +90,7 @@ const deleteProduct = async () => {
     if (confirmation) {
       const response = await doFetch("DELETE", undefined, `https://striveschool-api.herokuapp.com/api/product/${id}`);
       alert("Prodotto rimosso con successo");
+      window.location.assign("./index.html");
     }
   } catch (error) {
     console.log(error);
