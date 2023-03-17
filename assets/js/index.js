@@ -52,7 +52,7 @@ const createCards = products => {
     cardBody.appendChild(cardText);
 
     const link = document.createElement("a");
-    link.href = "#";
+    link.href = `./details.html?id=${el._id}`;
     link.className = "btn, btn-primary";
     link.textContent = "Scopri di più";
     cardBody.appendChild(link);
