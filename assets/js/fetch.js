@@ -5,12 +5,14 @@ const API_KEY =
 
 // Questa funzione puo essere riutilizzata per fare diverse fetch scegliendo il metodo.
 // Il metodo default e GET
-const doFetch = async (selectedMethod = "GET") => {
+const doFetch = async (selectedMethod = "GET", body) => {
   try {
     const response = await fetch(API_URL, {
       method: selectedMethod,
+      body: JSON.stringify(body),
       headers: {
-        Authorization: API_KEY
+        Authorization: API_KEY,
+        "Content-Type": "application/json"
       }
     });
 
