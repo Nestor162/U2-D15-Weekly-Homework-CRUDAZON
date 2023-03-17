@@ -6,8 +6,7 @@ body {
   background-color: #e3e6e6;
 }
 
-#home-icon,
-#edit-icon {
+.nav-icon {
   width: 30px;
   display: block;
   margin-inline: auto;
@@ -15,4 +14,16 @@ body {
 
 .icon-text {
   display: block;
+}
+
+.current-page span {
+  /*   border-radius: 20px; */
+  /* background-color: #da426194; */
+  /* border-bottom: 2px solid rgb(230, 194, 194); */
+  color: #ffe600;
+  border-bottom: solid 2px #ffe600;
+}
+
+.current-page svg {
+  fill: #ffe600;
 }
