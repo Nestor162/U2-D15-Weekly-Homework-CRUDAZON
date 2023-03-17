@@ -17,10 +17,9 @@ const handleSubmit = event => {
   // Mostra messagio creazione prodotto, dopo due secondi scompare.
   // Non viene fatto il redirect al index perche si prevede anche l'inserimento di vari prodotti di fila
   showAlert(`Inserimento del prodotto ${newProduct.name} avvenuto con successo`, "alert-success");
-  const alertInterval = setInterval(() => {
+  const alertTimeout = setInterval(() => {
     document.querySelector(".alert").remove();
   }, 2000);
-  clearInterval(alertInterval);
 
   event.target.reset();
 };
@@ -94,10 +93,9 @@ const editProduct = async id => {
 
       // Mostra il messaggio e dopo due secondi reindirizza al index
       showAlert("Prodotto modificato con successo", "alert-warning");
-      const alertInterval = setTimeout(() => {
+      const alertTimeout = setTimeout(() => {
         window.location.assign("./index.html");
       }, 2000);
-      clearInterval(alertInterval);
     }
   } catch (error) {
     console.log(error);
@@ -117,10 +115,9 @@ const deleteProduct = async () => {
 
       // Mostra il messaggio e dopo due secondi reindirizza al index
       showAlert("Prodotto rimosso con successo", "alert-danger");
-      const alertInterval = setTimeout(() => {
+      const alertTimeout = setTimeout(() => {
         window.location.assign("./index.html");
       }, 2000);
-      clearInterval(alertInterval);
     }
   } catch (error) {
     console.log(error);
