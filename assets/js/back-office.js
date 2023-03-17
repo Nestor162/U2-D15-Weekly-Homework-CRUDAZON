@@ -29,6 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (productId) {
     // Esegue questa funzione
     getProductToEdit(productId);
+    const btnEdit = document.getElementById("edit");
+    btnEdit.className = "btn btn-success";
+    btnEdit.addEventListener("click", editProduct);
   } else {
     console.log("nope");
   }
@@ -50,11 +53,21 @@ const getProductToEdit = async id => {
   }
 };
 
-// const editProduct = async id => {
-//   try {
-//     const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
-//     console.log(response + "edit");
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+const editProduct = async id => {
+  try {
+    // ricavo le nuove info aggiornate
+    const productUpdated = {
+      name: document.getElementById("productName").value,
+      description: document.getElementById("productDesc").value,
+      brand: document.getElementById("productBrand").value,
+      imageUrl: document.getElementById("productPic").value,
+      price: document.getElementById("productPrice").value
+    };
+
+    // Faccio una fetch di tipo PUT passando al body le nuove info
+    const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
+    alert("modificato!");
+  } catch (error) {
+    console.log(error);
+  }
+};
