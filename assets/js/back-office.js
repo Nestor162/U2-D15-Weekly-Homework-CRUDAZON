@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Seleziono il form dal DOM e aggiungo un evenlistener
   const form = document.getElementById("productsForm");
   form.addEventListener("submit", handleSubmit);
+  const btnReset = document.querySelector("#reset");
+  btnReset.addEventListener("click", () => {
+    form.reset();
+  });
 
   //Rricavo il parametro della URL corrispondente al ID prodotto
   const productId = new URLSearchParams(window.location.search).get("id");
@@ -31,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     getProductToEdit(productId);
 
     document.querySelector("button[type=submit]").className = "d-none";
+    btnReset.className = "d-none";
   } else {
     console.log("nope");
   }
