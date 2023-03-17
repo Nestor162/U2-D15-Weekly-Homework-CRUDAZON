@@ -14,9 +14,13 @@ const getContent = async () => {
 
 // Funzione per creare dinamicamente i card da mostrare sul HTML
 const createCards = products => {
+  const container = document.createElement("div");
+  container.className = "container mt-5";
+  document.body.appendChild(container);
+
   const row = document.createElement("div");
   row.className = "row";
-  document.body.appendChild(row);
+  container.appendChild(row);
 
   products.forEach(el => {
     const col = document.createElement("div");
