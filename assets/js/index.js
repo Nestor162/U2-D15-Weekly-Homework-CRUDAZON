@@ -23,7 +23,7 @@ const createCards = products => {
 
   products.forEach(el => {
     const col = document.createElement("div");
-    col.className = "col";
+    col.className = "col-3";
     row.appendChild(col);
 
     const cardWrapper = document.createElement("div");
