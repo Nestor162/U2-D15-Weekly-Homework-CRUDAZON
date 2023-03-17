@@ -4,7 +4,6 @@ const getContent = async () => {
     // Questa funzione (doFetch) si trova su 'fetch.js' fa una chiamata fetch ricevendo come parametro il metodo (GET, POST, PUT, DELETE)
     // L'ho creata su un file separato per riutilizzarla in diversi contesti
     const fetched = await doFetch();
-    console.log(fetched);
 
     createCards(fetched);
   } catch (error) {
