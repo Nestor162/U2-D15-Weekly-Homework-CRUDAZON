@@ -71,10 +71,14 @@ const editProduct = async id => {
       price: document.getElementById("productPrice").value
     };
 
-    const id = new URLSearchParams(window.location.search).get("id");
-    // Faccio una fetch di tipo PUT passando al body le nuove info
-    const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
-    alert("modificato!");
+    // Chiedo conferma prima di modificare
+    const confirmation = window.confirm("Sei sicuro di voler MODIFICARE questo prodotto?");
+    if (confirmation) {
+      const id = new URLSearchParams(window.location.search).get("id");
+      // Faccio una fetch di tipo PUT passando al body le nuove info
+      const response = await doFetch("PUT", productUpdated, `https://striveschool-api.herokuapp.com/api/product/${id}`);
+      alert("Prodotto modificato con successo!");
+    }
   } catch (error) {
     console.log(error);
   }
@@ -84,8 +88,8 @@ const deleteProduct = async () => {
   try {
     const id = new URLSearchParams(window.location.search).get("id");
 
-    // Chiedere conferma prima di eliminare
-    const confirmation = window.confirm("Sei sicuro di voler eliminare questo prodotto?");
+    // Chiedo conferma prima di eliminare
+    const confirmation = window.confirm("Sei sicuro di voler ELIMINARE questo prodotto?");
 
     if (confirmation) {
       const response = await doFetch("DELETE", undefined, `https://striveschool-api.herokuapp.com/api/product/${id}`);
