@@ -5,3 +5,14 @@ nav {
 body {
   background-color: #e3e6e6;
 }
+
+#home-icon,
+#edit-icon {
+  width: 30px;
+  display: block;
+  margin-inline: auto;
+}
+
+.icon-text {
+  display: block;
+}
