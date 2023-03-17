@@ -71,4 +71,5 @@ const createCards = products => {
 // Al caricamento della pagina viene eseguita la funzione 'getContent'
 window.onload = () => {
   getContent();
+  document.getElementById("spinner").remove();
 };
