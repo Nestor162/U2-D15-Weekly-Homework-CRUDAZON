@@ -1,22 +1,8 @@
-// Parametri per la fetch (endpoint, autorizzazione, etc)
-const API_URL = "https://striveschool-api.herokuapp.com/api/product/";
-const API_KEY =
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE0MjA5NWY4MWI0MjAwMTM5YjI3YzIiLCJpYXQiOjE2NzkwNDA2NjIsImV4cCI6MTY4MDI1MDI2Mn0.5y8d8JwcZ5cbBO-aAdINDcyBNxKpQ-K-1Y0crjekibM";
-
-const options = {
-  headers: {
-    Authorization: API_KEY
-  }
-};
-
 // Funzione per ottenere i prodotti dalla API
 const getContent = async () => {
-  try {
-    const response = await fetch(API_URL, options);
-    const data = await response.json();
-  } catch (error) {
-    console.log(error);
-  }
+  // Questa funzione che si trova su 'fetch.js' fa una chiamata fetch ricevendo come parametro il metodo (GET, POST, PUT, DELETE)
+  // L'ho creata su un file separato per riutilizzarla in diversi contesti
+  doFetch();
 };
 
 // Al caricamento della pagina viene eseguita la funzione 'getContent'
